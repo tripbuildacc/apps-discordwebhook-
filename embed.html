@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Tripweb Tools</title>
+<link rel="icon" type="image/png" href="https://tripweb.page.gd/library/weblogo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+html{font-size:16px}
+*{-webkit-text-size-adjust:100%;text-size-adjust:100%;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#1e1e1e;color:#fff;margin:0;padding:0}
+header{background:#2a2a2a;border-bottom:1px solid #3d3d3d;color:#ffcc00;text-align:center;font-weight:600;padding:18px 0;position:sticky;top:0;z-index:1000;font-size:1.3rem}
+.container{max-width:720px;margin:30px auto;padding:0 15px;display:grid;gap:20px;grid-template-columns:1fr;}
+.app{background:#2a2a2a;border:1px solid #3d3d3d;border-radius:12px;padding:16px;font-size:.9rem;position:relative;overflow:hidden}
+.app:hover{border-color:#ffcc00}
+.app-header{display:flex;justify-content:space-between;align-items:flex-start}
+.app-title-wrap{display:flex;align-items:center;gap:8px;flex:1}
+.app-title{font-size:1.1rem;font-weight:600;color:#fff}
+.app-desc{font-size:.8rem;color:#bbb;margin:6px 0;line-height:1.4}
+.app-badge{font-size:.65rem;font-weight:600;padding:2px 6px;border-radius:4px;border:none;background:transparent;color:#fff}
+.app-badge.tripweb{background:#ffcc00;color:#111}
+.arrow-btn{background:none;border:none;color:#ffcc00;font-size:1.5rem;cursor:pointer;transition:transform .3s ease}
+.arrow-btn.open{transform:rotate(180deg)}
+.arrow-btn:active{transform:scale(.9);transition:.1s}
+.expand-area{max-height:0;overflow:hidden;transition:max-height .4s ease, padding .4s ease;padding:0 4px}
+.expand-area.show{max-height:500px;padding:10px 4px 4px}
+.sub-app{background:#222;border:1px solid #444;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.sub-line{display:flex;align-items:center;gap:8px;flex:1 1 140px}
+.sub-name{color:#fff;font-size:.85rem}
+.sub-type{color:#bbb;font-size:.75rem}
+.badge{font-size:.65rem;font-weight:600;padding:2px 6px;border-radius:4px;border:none;background:transparent;color:#fff}
+.badge.new{background:#42d100;color:#fff}
+.badge.fixed{background:#92d100;color:#fff}
+.badge.beta{background:#e6750b;color:#fff}
+.badge.broken{background:#bf0000;color:#fff}
+.badge.soon{background:#595959;color:#fff}
+.use-btn{background:#ffcc00;color:#111;border:none;border-radius:6px;padding:6px 18px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background .2s, transform .1s}
+.use-btn:hover{background:#ffd93d}
+.use-btn:active{transform:scale(.95)}
+</style>
+</head>  
+  
+<body>  
+  
+<header>Tripweb Tools</header>  
+<div style="max-width:720px;margin:20px auto;padding:15px;">
+  <div style="background:#2a2a2a;border:1px solid #3d3d3d;border-radius:12px;padding:16px;">
+    <h2 style="margin:0 0 10px;color:#ffcc00;font-size:1.2rem;">Discord Webhook Embed Sender</h2>
+
+    <!-- URL -->
+    <label style="color:#ccc;">Webhook URL</label>
+    <input id="webhookUrl" placeholder="https://discord.com/api/webhooks/xxxx/yyyy"
+      style="width:100%;padding:10px;margin:6px 0 14px;border:1px solid #444;background:#1e1e1e;color:#fff;border-radius:6px;">
+
+    <!-- Embed Title -->
+    <label style="color:#ccc;">Embed Title (required)</label>
+    <input id="embedTitle" placeholder="Example: Server Update"
+      style="width:100%;padding:10px;margin:6px 0 14px;border:1px solid #444;background:#1e1e1e;color:#fff;border-radius:6px;">
+
+    <!-- Embed Description -->
+    <label style="color:#ccc;">Embed Description (required)</label>
+    <textarea id="embedDesc" placeholder="Example: The server will be down for maintenance at 10 PM."
+      style="width:100%;height:100px;padding:10px;margin:6px 0 14px;border:1px solid #444;background:#1e1e1e;color:#fff;border-radius:6px;"></textarea>
+
+    <!-- Optional Thumbnail -->
+    <label style="color:#ccc;">Thumbnail URL (optional)</label>
+    <input id="embedThumb" placeholder="Example: https://example.com/icon.png"
+      style="width:100%;padding:10px;margin:6px 0 14px;border:1px solid #444;background:#1e1e1e;color:#fff;border-radius:6px;">
+
+    <!-- Optional Image -->
+    <label style="color:#ccc;">Large Image URL (optional)</label>
+    <input id="embedImage" placeholder="Example: https://example.com/banner.jpg"
+      style="width:100%;padding:10px;margin:6px 0 14px;border:1px solid #444;background:#1e1e1e;color:#fff;border-radius:6px;">
+
+    <!-- Embed Color -->
+    <label style="color:#ccc;">Color (HEX, optional)</label>
+    <input id="embedColor" placeholder="Example: #ffcc00"
+      style="width:100%;padding:10px;margin:6px 0 14px;border:1px solid #444;background:#1e1e1e;color:#fff;border-radius:6px;">
+
+    <!-- Footer Text -->
+    <label style="color:#ccc;">Footer Text (optional)</label>
+    <input id="embedFooter" placeholder="Example: Powered by Tripweb Tools"
+      style="width:100%;padding:10px;margin:6px 0 14px;border:1px solid #444;background:#1e1e1e;color:#fff;border-radius:6px;">
+
+    <!-- Submit -->
+    <button onclick="sendEmbedWebhook()"
+      style="background:#ffcc00;color:#111;border:none;border-radius:6px;padding:10px 20px;font-size:.9rem;font-weight:600;cursor:pointer;">
+      SEND EMBED
+    </button>
+  </div>
+</div>
+
+<!-- Popup Notification -->
+<div id="popup"
+  style="position:fixed;left:50%;top:-60px;transform:translateX(-50%);background:#2a2a2a;border:1px solid #3d3d3d;padding:12px 20px;border-radius:8px;font-size:.9rem;color:#fff;transition:top .4s ease, opacity .4s ease;opacity:0;z-index:2000;">
+</div>
+
+<script>
+function showPopup(text, color="#42d100") {
+  const pop = document.getElementById('popup');
+  pop.innerText = text;
+  pop.style.color = color;
+  pop.style.top = "20px";
+  pop.style.opacity = "1";
+
+  setTimeout(() => {
+    pop.style.top = "-60px";
+    pop.style.opacity = "0";
+  }, 2000);
+}
+
+async function sendEmbedWebhook() {
+  const url = document.getElementById("webhookUrl").value.trim();
+  const title = document.getElementById("embedTitle").value.trim();
+  const desc = document.getElementById("embedDesc").value.trim();
+  const thumb = document.getElementById("embedThumb").value.trim();
+  const image = document.getElementById("embedImage").value.trim();
+  const color = document.getElementById("embedColor").value.trim();
+  const footer = document.getElementById("embedFooter").value.trim();
+
+  if (!url || !title || !desc) {
+    showPopup("Webhook URL, Title, and Description are required.", "#ff5757");
+    return;
+  }
+
+  const embed = {
+    title: title,
+    description: desc
+  };
+
+  if (thumb) embed.thumbnail = { url: thumb };
+  if (image) embed.image = { url: image };
+  if (footer) embed.footer = { text: footer };
+  if (color) embed.color = parseInt(color.replace("#", ""), 16);
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ embeds: [embed] })
+    });
+
+    if (res.ok) {
+      document.getElementById("embedDesc").value = "";
+      document.getElementById("embedTitle").value = "";
+      showPopup("Embed sent!", "#42d100");
+    } else {
+      showPopup("Failed to send embed.", "#ff5757");
+    }
+  } catch {
+    showPopup("Connection error.", "#ff5757");
+  }
+}
+</script>
